@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<posper-output>
+    <ticket>
+        <line>
+            <text>{"receipt":[{"customertext": "${ticket.getNumber()}","payedBy": "0","items":[
+			#set( $anzahl = $ticket.getLines().size() )</text>
+			#foreach ($ticketline in $ticket.getLines())
+            <text>{ "count": "</text>
+            <text>${ticketline.getAmount()}</text>
+            <text>",</text>
+            <text>"name": "</text>
+            <!-- <text>${velocityCount}  von  ${anzahl}</text> -->
+            <text>${ticketline.getDescription()}</text>
+            <text>",</text>
+            <text>"gross": "</text>
+            <text>${ticketline.printsPriceSellTax()}</text>
+            <text>", </text>
+            <text>"tax": "</text>
+            <text>${ticketline.getTax().getTaxId()}</text>
+            <text>" }</text>
+            #if( $velocityCount < $anzahl )
+            <text>,</text>
+            #end
+        #end
+        <text>]}]}</text>
+        </line>
+        <cut/>
+    </ticket>
+</posper-output>
