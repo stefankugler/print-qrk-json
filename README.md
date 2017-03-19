@@ -19,13 +19,13 @@ Einstellungen:
 Die Software *[Multi File Port Monitor](https://sourceforge.net/projects/mfilemon/)* legt einen speziellen Druckeranschluss an und erlaubt die Manipulation von Druckaufträgen. 
 - Installiere die Software
 - Lege einen neuen Drucker an, wähle *Einen lokalen Drucker hinzufügen* und erstelle einen neuen Anschluss vom Typ *Multi File Port Monitor*.
-  - Name des Ports: *kasse*
+  - Name des Ports: `kasse`
   - Output Path: `C:\CkvSoft\import`
-  - Filename Pattern: `bon-%0000i.txt`. Alternativ `%Y%m%d%H%n%s.txt` für eine Benennung mit Zeitstempel. Weitere Variablen sind in der Port-Konfiguration von des Druckers über die Schaltfläche `?` finden.
-  - Overwrite existing files: aktiviert
+  - Filename Pattern: `bon-%0000i.txt`. Alternativ `%Y%m%d%H%n%s.txt` für eine Benennung mit Zeitstempel. Weitere Variablen sind in der Port-Konfiguration von des Druckers über die Schaltfläche `?` zu finden.
+  - Overwrite existing files: `aktiviert`
   - User command: `C:\CkvSoft\import\removeesc.exe %f`
 - Druckertreiber: HP LaserJet 4100 PCL6
-- Name des Druckers: *kasse*
+- Name des Druckers: `kasse`
 
 ## Anpassung des Bon-Layouts in der POS-Software
 Das Format der JSON-Datei wurde im [Forum](http://www.ckvsoft.at/forum/qrk-fragen-und-antworten/anbindung-an-boniersystem/#post-648) veröffentlicht. Die Anpassung der Bons der genannten Kassensysteme erfolgt über die Template-Engine *Apache Velocity*. Die Vorlage `Printer.Ticket[.pos-software]` erstellt ein JSON-Objekt für QRK.
@@ -39,7 +39,7 @@ POSper:
 - Drucker: `seiko`, Modus `rawprinter`, Port: `kasse`; Der Treiber für Seiko-Drucker fügt nur zu Beginn und am Ende der Ausgabedatei Steuerzeichen hinzu. Diese können leicht entfernt werden.
 
 ## Entfernen überflüssiger Steuerzeichen
-Das C#-Programm removeesc.exe entfernt aus der per Parameter übergebenen Datei alle führenden und abschließenden Steuerzeichen und speichert die Datei mit der Endung `.json` im Importverzeichnis von QRK ab. Sobald QRK in diesem Verzeichnis eine neue Datei entdeckt, wird ein Bon erstellt und gedruckt.
+Das C#-Programm `removeesc.exe` entfernt aus der per Parameter übergebenen Datei alle führenden und abschließenden Steuerzeichen und speichert die Datei mit der Endung `.json` im Importverzeichnis von QRK ab. Sobald QRK in diesem Verzeichnis eine neue Datei entdeckt, wird ein Bon erstellt und gedruckt.
 
 Das Öffnen der Kassenlade muss der Druckertreiber des in QRK konfigurierten Bondruckers übernehmen, sofern notwendig.
 
