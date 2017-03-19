@@ -39,11 +39,11 @@ POSper:
 - Drucker: `seiko`, Modus `rawprinter`, Port: `kasse`; Der Treiber für Seiko-Drucker fügt nur zu Beginn und am Ende der Ausgabedatei Steuerzeichen hinzu. Diese können leicht entfernt werden.
 
 ## Entfernen überflüssiger Steuerzeichen
-Das C#-Programm `removeesc.exe` entfernt aus der per Parameter übergebenen Datei alle führenden und abschließenden Steuerzeichen und speichert die Datei mit der Endung `.json` im Importverzeichnis von QRK ab. Sobald QRK in diesem Verzeichnis eine neue Datei entdeckt, wird ein Bon erstellt und gedruckt.
+Das C#-Programm `removeesc.exe` (Quellcode: Program.cs, mit SharpDevelop kompiliert) entfernt aus der per Parameter übergebenen Datei alle führenden und abschließenden Steuerzeichen und speichert die Datei mit der Endung `.json` im Importverzeichnis von QRK ab. Sobald QRK in diesem Verzeichnis eine neue Datei entdeckt, wird ein Bon erstellt und gedruckt.
 
 Das Öffnen der Kassenlade muss der Druckertreiber des in QRK konfigurierten Bondruckers übernehmen, sofern notwendig.
 
-### Gescheiterte Versuche
+## Gescheiterte Versuche
 - Nutzung des file-Druckertreibers der POS-Software: Die Ausgabedatei wird während der Laufzeit der POS-Software offen gehalten und neue Ausgaben werden am Ende angehängt. Ein Abgriff der einzelnen JSON-Daten wäre wieder nur mit Zusatzsoftware möglich.
 - Verwendung des Windows-Standarddruckers mit dem Druckertreiber "Generic / Text only" und Umgehung der Steuerzeichen-Bereinigung: Die Ausgabedatei enthält nur ein einzelnes Zeichen. Stellt man den Druckertreiber auf z.B. XPS oder PDF (per PDFCreator) um, wird der JSON-Code kopierbar ausgegeben.
 - Die genannten Software-Produkte sind freie Software und können ja frei verändert werden: Dazu fehlt die Zeit zur Einarbeitung in den Code und vermutlich reichen auch meine Programmierkenntnisse nicht aus - eine Einreichung des Features *JSON-Export pro Bon* kann an die Entwickler/Community weitergereicht werden.
