@@ -19,10 +19,10 @@ Einstellungen:
 Die Software *[Multi File Port Monitor](https://sourceforge.net/projects/mfilemon/)* legt einen speziellen Druckeranschluss an und erlaubt die Manipulation von Druckaufträgen. 
 - Installiere die Software
 - Lege einen neuen Drucker an, wähle *Einen lokalen Drucker hinzufügen* und erstelle einen neuen Anschluss vom Typ *Multi File Port Monitor*.
--- Name des Ports: *kasse*
--- Output Path: `C:\CkvSoft\import`
--- Filename Pattern: `bon-%0000i.txt`
--- Overwrite existing files: aktiviert
+  - Name des Ports: *kasse*
+  - Output Path: `C:\CkvSoft\import`
+  - Filename Pattern: `bon-%0000i.txt`
+  - Overwrite existing files: aktiviert
 - Druckertreiber: HP LaserJet 4100 PCL6
 - Name des Druckers: *kasse*
 
