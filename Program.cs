@@ -17,7 +17,7 @@ namespace removeesc
 				string filename = @args[0];
 				
 				try {
-					//Get Path from filename
+					//Get path from filename
 					string path = System.IO.Path.GetDirectoryName(@filename);
 					
 					//Debug: Append current filename to debug.txt
@@ -29,7 +29,7 @@ namespace removeesc
 					
 					//create timestamp for filename and save clean json data
 					string outname = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-					System.IO.File.WriteAllText (@path + "\\" + outname + ".json", json);
+					System.IO.File.WriteAllText(@path + "\\" + outname + ".json", json);
 					
 				} catch (Exception ex) {
 					Console.WriteLine(ex.Message);
