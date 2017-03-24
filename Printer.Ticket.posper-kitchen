@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default: cash (0);
+     alternativ: debit (1), credit (2) -->
+
+#set ($payedby = "0")
+#foreach ($paymentline in $ticket.payments)
+    #if ($paymentline.getMethod() == "magcard")
+        #set ($payedby = "1")
+    #end
+#end
+
+#set($kuechenbon = false)
+#foreach ($ticketline in $ticket.getLines())
+	#if($ticketline.getCategoryVisibleId() == 100 || $ticketline.getCategoryVisibleId() == 50 || $ticketline.getCategoryVisibleId() == 250 || $ticketline.getCategoryVisibleId() == 1)
+	#set($kuechenbon = true)
+	#end
+#end
+
+#set($bestnr = $ticket.getNumber() % 100)
+#set($customertext = "")
+#if($kuechenbon == true)
+	#set($customertext = "Küchenbon Nr. ${bestnr}")
+#end
+
+<posper-output>
+    <ticket>
+        <line>
+            <text>{"receipt":[{"customerText": "${customertext}","payedBy": "${payedby}","items":[
+            #set( $anzahl = $ticket.getLines().size() )</text>
+			#set($kuechenbon = false)
+            #foreach ($ticketline in $ticket.getLines())
+            <text>{ "count": "</text>
+            <text>${ticketline.getAmount()}</text>
+            <text>",</text>
+            <text>"name": "</text>
+            <text>${ticketline.getDescription()}</text>
+            <text>",</text>
+            <text>"gross": "</text>
+            <text>${ticketline.printsPriceSellTax()}</text>
+            <text>", </text>
+            <text>"tax": "</text>
+            <text>${ticketline.getTax().getTaxId()}</text>
+            <text>0" }</text>
+            #if( $velocityCount < $anzahl )
+            <text>,</text>
+            #end
+        #end
+        <text>]}]}</text>
+        </line>
+        <cut/>
+    </ticket>
+	
+#foreach ($ticketline in $ticket.getLines())
+#if($ticketline.getCategoryVisibleId() == 100 || $ticketline.getCategoryVisibleId() == 50 || $ticketline.getCategoryVisibleId() == 250 || $ticketline.getCategoryVisibleId() == 1)
+	<ticket printer="2">
+		<line>
+			<text align="left" length="8">Bon Nr:</text>
+			<text align="left" length="8">${ticket.getNumber()}</text>
+			<text align="left" length="7">Datum:</text>
+			<text align="left" length="19">${ticket.printReceiptClose()}</text>
+        </line>
+		<line></line>
+<!--
+        <line>
+			<text align="left" length="15">Kategorie:</text>
+			<text>${ticketline.getCategoryVisibleId()}</text>
+        </line>
+-->
+        <line size="1">
+			<text bold="true" align ="right" length="5">${number.integer($ticketline.getAmount())}x </text>
+			<text bold="true" align ="left" length="37">${ticketline.getDescription()}</text>
+        </line>
+		<line></line>
+        <line>
+            <text align ="left" length="21">Einzel: ${ticketline.printsPriceSellTax()}</text>
+            <text align ="left" length="21">Summe: ${ticketline.printsTotal()}</text>
+		</line>
+
+        <line size="1">
+            <text bold="true" align="left" length="42">Bestellung Küche Nr: $bestnr</text>
+        </line>
+
+		<cut/>
+	</ticket>
+#end
+#end
+</posper-output>
