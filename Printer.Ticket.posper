@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- default: cash (0);
+     alternativ: debit (1), credit (2) -->
+
+#set ($payedby = "0")
+#foreach ($paymentline in $ticket.payments)
+    #if ($paymentline.getMethod() == "magcard")
+        #set ($payedby = "1")
+    #end
+#end
+
 <posper-output>
     <ticket>
         <line>
-            <text>{"receipt":[{"customertext": "${ticket.getNumber()}","payedBy": "0","items":[
-			#set( $anzahl = $ticket.getLines().size() )</text>
-			#foreach ($ticketline in $ticket.getLines())
+            <text>{"receipt":[{"customerText": "${ticket.getNumber()}","payedBy": "${payedby}","items":[
+            #set( $anzahl = $ticket.getLines().size() )</text>
+            #foreach ($ticketline in $ticket.getLines())
             <text>{ "count": "</text>
             <text>${ticketline.getAmount()}</text>
             <text>",</text>
             <text>"name": "</text>
-            <!-- <text>${velocityCount}  von  ${anzahl}</text> -->
             <text>${ticketline.getDescription()}</text>
             <text>",</text>
             <text>"gross": "</text>
@@ -18,7 +27,7 @@
             <text>", </text>
             <text>"tax": "</text>
             <text>${ticketline.getTax().getTaxId()}</text>
-            <text>" }</text>
+            <text>0" }</text>
             #if( $velocityCount < $anzahl )
             <text>,</text>
             #end
