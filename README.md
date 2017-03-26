@@ -3,10 +3,19 @@ Die Software *[QRK Registrierkasse](http://www.ckvsoft.at/)* ist eine einfache K
 Neben der typischen Kassenfunktion nimmt die Kasse im Server Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden.
 Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
 
-Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
+Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Für Linux gibt es einen Lösungsansatz für Chromis. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
 
 **Haftungsausschluss:** Der Einsatz der genannten Softwareprodukte erfolgt auf eigenes Risiko!
 
+# Linux
+Für Chromis:
+- Template Printer.Ticket mit (Printer.Ticket.chromis) ersetzen
+- Drucker 1 konfigurieren: Typ: `Epson`, Modus: `file`, Port: `/opt/chromis.pipe`
+- Pipe anlegen: `mkfifo /opt/chromis.pipe`
+- Skript (bon2json.sh) anlegen und ausführbar machen (`chmod a+x bon2json.sh`)
+- Ungetestet: Skript ausführen und QRK starten
+
+# Windows
 ## QRK Registrierkasse
 Siehe [Knowledgebase](http://www.ckvsoft.at/kb/) auf der Projekthomepage. 
 
@@ -43,7 +52,7 @@ Das C#-Programm `removeesc.exe` (Quellcode: Program.cs, mit SharpDevelop kompili
 
 Das Öffnen der Kassenlade muss der Druckertreiber des in QRK konfigurierten Bondruckers übernehmen, sofern notwendig.
 
-## Gescheiterte Versuche
+### Gescheiterte Versuche
 - Nutzung des file-Druckertreibers der POS-Software: Die Ausgabedatei wird während der Laufzeit der POS-Software offen gehalten und neue Ausgaben werden am Ende angehängt. Ein Abgriff der einzelnen JSON-Daten wäre wieder nur mit Zusatzsoftware möglich.
 - Verwendung des Windows-Standarddruckers mit dem Druckertreiber "Generic / Text only" und Umgehung der Steuerzeichen-Bereinigung: Die Ausgabedatei enthält nur ein einzelnes Zeichen. Stellt man den Druckertreiber auf z.B. XPS oder PDF (per PDFCreator) um, wird der JSON-Code kopierbar ausgegeben.
 - Die genannten Software-Produkte sind freie Software und können ja frei verändert werden: Dazu fehlt die Zeit zur Einarbeitung in den Code und vermutlich reichen auch meine Programmierkenntnisse nicht aus - eine Einreichung des Features *JSON-Export pro Bon* kann an die Entwickler/Community weitergereicht werden.
