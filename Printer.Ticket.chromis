@@ -2,7 +2,7 @@
 <output>
 <ticket>
         <line>
-            <text>{"receipt":[{"customertext": "${ticket.printId()}","payedBy": "0","items":[
+            <text>{"receipt":[{"customerText": "${ticket.printId()}","payedBy": "0","items":[
 			#set( $anzahl = $ticket.getLines().size() )</text>
 			#foreach ($ticketline in $ticket.getLines())
             <text>{ "count": "</text>
