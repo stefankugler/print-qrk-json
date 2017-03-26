@@ -12,7 +12,7 @@ Für Chromis:
 - Template Printer.Ticket mit (Printer.Ticket.chromis) ersetzen
 - Drucker 1 konfigurieren: Typ: `Epson`, Modus: `file`, Port: `/opt/chromis.pipe`
 - Pipe anlegen: `mkfifo /opt/chromis.pipe`
-- Skript (bon2json.sh) anlegen und ausführbar machen (`chmod a+x bon2json.sh`)
+- Skript [bon2json.sh](bon2json.sh) anlegen und ausführbar machen: `chmod a+x bon2json.sh`
 - Ungetestet: Skript ausführen und QRK starten
 
 # Windows
