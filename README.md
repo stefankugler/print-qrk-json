@@ -15,6 +15,9 @@ Für Chromis:
 - Skript [bon2json.sh](bon2json.sh) anlegen und ausführbar machen: `chmod a+x bon2json.sh`
 - Skript ausführen und QRK starten
 - ggf. Berechtigungen anpassen (Pipe für User lesbar machen)
+- Todo:
+  - Bondruck auf zusätzlichen Drucker setzen (2, 3,...), und Bondrucker als Drucker 1 einrichten, damit können auch alle anderen Bons gedruckt werden
+  - ESC-Code für Lade in Skript einbauen
 
 # Windows
 ## QRK Registrierkasse
