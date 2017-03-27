@@ -16,7 +16,7 @@ Für Chromis:
 - Skript ausführen und QRK starten
 - ggf. Berechtigungen anpassen (Pipe für User lesbar machen)
 - Todo:
-  - Bondruck auf zusätzlichen Drucker setzen (2, 3,...), und Bondrucker als Drucker 1 einrichten, damit können auch alle anderen Bons gedruckt werden
+  - Bondruck auf zusätzlichen Drucker setzen (2, 3,...), und Bondrucker als Drucker 1 einrichten, damit können auch alle anderen Bons gedruckt werden: Änderung im Template z.B. `<ticket printer="2">`
   - ESC-Code für Lade in Skript einbauen
 
 # Windows
