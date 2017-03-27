@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <output>
 <ticket>
+<!-- optional: <ticket printer="2"> -->
         <line>
             <text>{"receipt":[{"customerText": "${ticket.printId()}","payedBy": "0","items":[
 			#set( $anzahl = $ticket.getLines().size() )</text>
