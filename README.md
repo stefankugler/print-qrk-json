@@ -49,7 +49,9 @@ Das Format der JSON-Datei wurde im [Forum](http://www.ckvsoft.at/forum/qrk-frage
 Die POS-Software muss nun dazu gebracht werden, den Bon über den eben erstellten Drucker auszugeben.
 
 POSper:
-- Drucker: `seiko`, Modus `rawprinter`, Port: `kasse`; Der Treiber für Seiko-Drucker fügt nur zu Beginn und am Ende der Ausgabedatei Steuerzeichen hinzu. Diese können leicht entfernt werden.
+- Drucker: `seiko`, Modus `rawprinter`, Port: `kasse`; Der Treiber für Seiko-Drucker fügt nur zu Beginn und am Ende der Ausgabedatei Steuerzeichen hinzu. Diese können leicht entfernt werden. In QRK wurde mit der Version vom 22.3.2017 das Entfernen von führenden und angehängten Steuerzeichen hinzugefügt, es dürfte hier aber noch einen Bug geben.
+Chromis:
+- Bietet keinen Treiber für seiko-Drucker, für das Entfernen der Steuerzeichen muss der Quellcode des C#-Programms angepasst werde (Todo)
 
 ## Entfernen überflüssiger Steuerzeichen
 Das C#-Programm `removeesc.exe` (Quellcode: Program.cs, mit SharpDevelop kompiliert) entfernt aus der per Parameter übergebenen Datei alle führenden und abschließenden Steuerzeichen und speichert die Datei mit der Endung `.json` im Importverzeichnis von QRK ab. Sobald QRK in diesem Verzeichnis eine neue Datei entdeckt, wird ein Bon erstellt und gedruckt.
