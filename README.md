@@ -1,6 +1,6 @@
 # QRK Registrierkasse als Serverdienst für alte Kassenlösungen
 Die Software *[QRK Registrierkasse](http://www.ckvsoft.at/)* ist eine einfache Kasse, die nach Angaben der Projekthomepage der österreichischen Registrierkassensicherheitsverordnung entspricht.
-Neben der typischen Kassenfunktion nimmt die Kasse im Server Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden. Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
+Neben der typischen Kassenfunktion nimmt die Kasse im Server-Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden. Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
 Das Format der JSON-Datei wurde im [Forum](http://www.ckvsoft.at/forum/qrk-fragen-und-antworten/anbindung-an-boniersystem/#post-648) veröffentlicht. Die Anpassung der Bons der genannten Kassensysteme erfolgt über die Template-Engine *Apache Velocity*. Die Vorlage `Printer.Ticket[.pos-software]` erstellt ein JSON-Objekt für QRK.
 
 Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Unter Windows 10 funktioniert der MFILEMON-Druckeranschluss nicht (?). Für Linux gibt es einen Lösungsansatz für Chromis und POSper. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
@@ -20,7 +20,7 @@ Durch die Verwendung eines neuen Druckers in der POS-Software für den Export na
 - Berechtigungen anpassen (Pipe für Kassa-User lesbar machen `chmod 666 chromis.pipe`)
 - ESC-Code für die Kassenlade kann mit dem Template für den Export über den alten Drucker mitgeschickt werden (siehe Template (Printer.Ticket.posper-kitchen), dort werden zwei Druckaufträge für zwei unterschiedliche Drucker erstellt, der Befehl für das Öffnen der Kassenlade lautet `<opendrawer/>`), oder im Skript (bon2json.sh) eingefügt werden, z.B. `echo -e -n "\x1b\x70\x30\x40\x50" > /dev/usb/lp0` für einen USB-Drucker (ungetestet)
 - QRK konfigurieren
-- QRK im Servermodus starten mit `qrk --servermode`
+- QRK im Server-Modus starten mit `qrk --servermode`
 
 ## Windows
 - Die Software *[Multi File Port Monitor](https://sourceforge.net/projects/mfilemon/)* installieren
@@ -32,5 +32,8 @@ Durch die Verwendung eines neuen Druckers in der POS-Software für den Export na
   - Druckertreiber: HP LaserJet 4100 PCL6 (egal?)
   - Name des Druckers: `kasse`
 - Neuen unbenutzten Drucker (z.B. Drucker 2) konfigurieren: Typ: `Epson`, Modus: `raw`, Printer: `kasse` (so wie der Name des Ports, der Name des Druckers sollte egal sein und kann ggf. nach Erstellung des Ports wieder gelöscht werden)
-- Einstellungen speichern und Chromis POS beenden. Öffne die Konfigurationsdatei von Chromis POS mit einem Editor und finde die Zeile `machine.printer[.x]=epson\:raw,kassa` (`x`steht für die Nummer des gewählten Druckers, beginnend bei 2, der erste Drucker heißt nur `machine.printer`). Ändere den Wert von `epson\:raw,kassa` auf `file\:raw,kassa`. Die Einstellung `file` erlaubt in Chromis POS keine weiteren Einstellungen, die Einstellungen aus der Konfigurationsdatei werden aber übernommen. Achtung bei der Änderung weiterer Einstellungen, ggf. muss dieser Wert neu angepasst werden (Bug/Featre?).
-- Template Printer.Ticket mit (Printer.Ticket.chromis) ersetzen und für den richtigen Drucker bearbeiten z.B. `<ticket printer="2">`
+- Einstellungen speichern und Chromis POS beenden. Öffne die Konfigurationsdatei von Chromis POS (zu finden unter `C:\User\<username>\chromispos.properties`) mit einem Editor und finde die Zeile `machine.printer[.x]=epson\:raw,kassa` (`x`steht für die Nummer des gewählten Druckers, beginnend bei 2, der erste Drucker heißt nur `machine.printer`). Ändere den Wert von `epson\:raw,kassa` auf `file\:raw,kassa`. Die Einstellung `file` erlaubt in Chromis POS keine weiteren Einstellungen, die Einstellungen aus der Konfigurationsdatei werden aber übernommen. Achtung bei der Änderung weiterer Einstellungen, ggf. muss dieser Wert neu angepasst werden (Bug/Featre?).
+- Template Printer.Ticket mit (Printer.Ticket.chromis) ersetzen und für den richtigen Drucker bearbeiten z.B. `<ticket printer="2">`. Altes Template ggf. sichern.
+- Das öffnen der Kassenlade kann über den Druckertreiber des Bondruckers oder über ein zusätzliches Template für den alten Anschluss des Bondruckers (siehe Template (Printer.Ticket.posper-kitchen), dort werden zwei Druckaufträge für zwei unterschiedliche Drucker erstellt, der Befehl für das Öffnen der Kassenlade lautet `<opendrawer/>`)
+- QRK konfigurieren
+- QRK im Server-Modus starten mit `qrk --servermode`
