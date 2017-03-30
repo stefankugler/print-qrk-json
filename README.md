@@ -4,6 +4,7 @@ Neben der typischen Kassenfunktion nimmt die Kasse im Server-Modus Rechnungsdate
 Das Format der JSON-Datei wurde im [Forum](http://www.ckvsoft.at/forum/qrk-fragen-und-antworten/anbindung-an-boniersystem/#post-648) veröffentlicht. Die Anpassung der Bons der genannten Kassensysteme erfolgt über die Template-Engine *Apache Velocity*. Die Vorlage `Printer.Ticket[.pos-software]` erstellt ein JSON-Objekt für QRK.
 
 Die Beschreibung wurde unter Windows XP, 7 und 10 mit der POS-Software Chromis POS und POSper getestet. Für Linux gibt es einen Lösungsansatz für Chromis POS und POSper. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
+Auf der [QRK-Homepage](http://www.ckvsoft.at/kb/installation-qrk-chromispos/) sind auch Infos zur Verknüpfung von Chromis POS und QRK zu finden. Fragen/Ergänzungen bitte im [QRK-Forum](http://www.ckvsoft.at/forum/) posten!
 
 **Haftungsausschluss:** Der Einsatz der genannten Softwareprodukte erfolgt auf eigenes Risiko!
 
