@@ -6,9 +6,9 @@ Das Format der JSON-Datei wurde im [Forum](http://www.ckvsoft.at/forum/qrk-frage
 Die Beschreibung wurde unter Windows XP, 7 und 10 mit der POS-Software Chromis POS und POSper getestet. Für Linux gibt es einen Lösungsansatz für Chromis POS und POSper. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
 Auf der [QRK-Homepage](http://www.ckvsoft.at/kb/installation-qrk-chromispos/) sind auch Infos zur Verknüpfung von Chromis POS und QRK zu finden. Fragen/Ergänzungen bitte im [QRK-Forum](http://www.ckvsoft.at/forum/) posten!
 
-**Haftungsausschluss:** Der Einsatz der genannten Softwareprodukte erfolgt auf eigenes Risiko!
-
 Durch die Verwendung eines neuen Druckers in der POS-Software für den Export nach QRK können alle Ausdrucke des Kassensystems (ausgenommen Kassabons) wie bisher getätigt werden (Abschluss etc). Ein Nachdruck des Bons müsste aber über QRK erfolgen, je nach Konfiguration des Kassensystems würde der Bon ansonsten ggf. in QRK neu verbucht werden.
+
+**Haftungsausschluss:** Der Einsatz der genannten Softwareprodukte erfolgt auf eigenes Risiko!
 
 # Chromis POS
 ## Linux
