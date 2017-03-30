@@ -3,13 +3,13 @@ Die Software *[QRK Registrierkasse](http://www.ckvsoft.at/)* ist eine einfache K
 Neben der typischen Kassenfunktion nimmt die Kasse im Server Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden.
 Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
 
-Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Für Linux gibt es einen Lösungsansatz für Chromis. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
+Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Unter Windows 10 funktioniert der MFILEMON-Druckeranschluss nicht. Für Linux gibt es einen Lösungsansatz für Chromis. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
 
 **Haftungsausschluss:** Der Einsatz der genannten Softwareprodukte erfolgt auf eigenes Risiko!
 
 # Linux
-Für Chromis:
-- Template Printer.Ticket mit (Printer.Ticket.chromis) ersetzen
+Für Chromis/Posper:
+- Template Printer.Ticket mit (Printer.Ticket.chromis) oder (Printer.Ticket.posper) ersetzen
 - Drucker 1 konfigurieren: Typ: `Epson`, Modus: `file`, Port: `/opt/chromis.pipe`
 - Pipe anlegen: `mkfifo /opt/chromis.pipe`
 - Skript [bon2json.sh](bon2json.sh) anlegen und ausführbar machen: `chmod a+x bon2json.sh`
