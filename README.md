@@ -3,21 +3,21 @@ Die Software *[QRK Registrierkasse](http://www.ckvsoft.at/)* ist eine einfache K
 Neben der typischen Kassenfunktion nimmt die Kasse im Server Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden.
 Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
 
-Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Unter Windows 10 funktioniert der MFILEMON-Druckeranschluss nicht. Für Linux gibt es einen Lösungsansatz für Chromis. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
+Die Beschreibung wurde unter Windows XP und 7 mit der POS-Software POSper getestet. Unter Windows 10 funktioniert der MFILEMON-Druckeranschluss nicht. Für Linux gibt es einen Lösungsansatz für Chromis und POSper. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
 
 **Haftungsausschluss:** Der Einsatz der genannten Softwareprodukte erfolgt auf eigenes Risiko!
 
 # Linux
 Für Chromis/Posper:
-- Template Printer.Ticket mit (Printer.Ticket.chromis) oder (Printer.Ticket.posper) ersetzen
-- Drucker 1 konfigurieren: Typ: `Epson`, Modus: `file`, Port: `/opt/chromis.pipe`
+- Neuen unbenutzten Drucker (z.B. Drucker 2) konfigurieren: Typ: `Epson`, Modus: `file`, Port: `/opt/chromis.pipe`
+- Template Printer.Ticket mit (Printer.Ticket.chromis) oder (Printer.Ticket.posper) ersetzen und für den richtigen Drucker bearbeiten z.B. `<ticket printer="2">`
 - Pipe anlegen: `mkfifo /opt/chromis.pipe`
 - Skript [bon2json.sh](bon2json.sh) anlegen und ausführbar machen: `chmod a+x bon2json.sh`
 - Skript ausführen und QRK starten
 - ggf. Berechtigungen anpassen (Pipe für User lesbar machen)
-- Todo:
-  - Bondruck auf zusätzlichen Drucker setzen (2, 3,...), und Bondrucker als Drucker 1 einrichten, damit können auch alle anderen Bons gedruckt werden: Änderung im Template z.B. `<ticket printer="2">`
-  - ESC-Code für Lade in Skript einbauen
+- ESC-Code für die Kassenlade kann mit dem Template für den Export über den alten Drucker mitgeschickt werden oder im Skript (bon2json.sh) eingefügt werden, z.B. `echo -e -n "\x1b\x70\x30\x40\x50" > /dev/usb/lp0` (ungetestet)
+
+Durch die Verwendung eines neuen Druckers für den Export nach QRK können alle weiteren Ausdrucke des Kassensystems wie bisher getätigt werden (Abschluss etc). Ein Nachdruck des Bons müsste aber über QRK erfolgen, je nach Konfiguration des Kassensystems würde der Bon ansonsten ggf. in QRK neu verbucht werden.
 
 # Windows
 ## QRK Registrierkasse
