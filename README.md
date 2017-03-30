@@ -21,6 +21,7 @@ Durch die Verwendung eines neuen Druckers in der POS-Software für den Export na
 - ESC-Code für die Kassenlade kann mit dem Template für den Export über den alten Drucker mitgeschickt werden (siehe Template (Printer.Ticket.posper-kitchen), dort werden zwei Druckaufträge für zwei unterschiedliche Drucker erstellt, der Befehl für das Öffnen der Kassenlade lautet `<opendrawer/>`), oder im Skript (bon2json.sh) eingefügt werden, z.B. `echo -e -n "\x1b\x70\x30\x40\x50" > /dev/usb/lp0` für einen USB-Drucker (ungetestet)
 - QRK konfigurieren
 - QRK im Server-Modus starten mit `qrk --servermode`
+- Fehlersuche: siehe (Fehlersuche)
 
 ## Windows
 - Die Software *[Multi File Port Monitor](https://sourceforge.net/projects/mfilemon/)* installieren
@@ -37,3 +38,8 @@ Durch die Verwendung eines neuen Druckers in der POS-Software für den Export na
 - Das öffnen der Kassenlade kann über den Druckertreiber des Bondruckers oder über ein zusätzliches Template für den alten Anschluss des Bondruckers erfolgen (siehe Template (Printer.Ticket.posper-kitchen), dort werden zwei Druckaufträge für zwei unterschiedliche Drucker erstellt, der Befehl für das Öffnen der Kassenlade lautet `<opendrawer/>`)
 - QRK konfigurieren
 - QRK im Server-Modus starten mit `qrk --servermode`
+- Fehlersuche: siehe (Fehlersuche)
+
+## Fehlersuche
+- Prüfe, ob die POS-Software eine JSON-Datei "druckt": Der Inhalt dieser Ausgabedatei sollte von der Struktur her der Beispieldatei (testbon.json) ähneln (nur kompakter formatiert). Ist das nicht der Fall, liegt der Fehler bei der Konfiguration des POS-Systems
+- QRK beanstandet das Format der JSON-Datei: Öffne die Datei mit einem Editor (z.B. Notepad++, der Windows-Editor hat Probleme mit der Anzeige der Steuerzeichen und stellt den kompletten Inhalt falsch dar). Befinden sich in der Datei "komische" Zeichen, so wurde der falsche Druckertyp im POS-System ausgewählt.
