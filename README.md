@@ -31,9 +31,9 @@ Durch die Verwendung eines neuen Druckers in der POS-Software für den Export na
   - Overwrite existing files: `aktiviert`
   - Druckertreiber: HP LaserJet 4100 PCL6 (egal?)
   - Name des Druckers: `kasse`
-- Neuen unbenutzten Drucker (z.B. Drucker 2) konfigurieren: Typ: `Epson`, Modus: `raw`, Printer: `kasse` (so wie der Name des Ports, der Name des Druckers sollte egal sein und kann ggf. nach Erstellung des Ports wieder gelöscht werden)
+- Neuen unbenutzten Drucker (z.B. Drucker 2) konfigurieren: Typ: `Epson`, Modus: `raw`, Printer: `kasse` (so wie der Name des Ports, der Name des Druckers sollte egal sein und er kann ggf. nach Erstellung des Ports wieder gelöscht werden)
 - Einstellungen speichern und Chromis POS beenden. Öffne die Konfigurationsdatei von Chromis POS (zu finden unter `C:\User\<username>\chromispos.properties`) mit einem Editor und finde die Zeile `machine.printer[.x]=epson\:raw,kassa` (`x`steht für die Nummer des gewählten Druckers, beginnend bei 2, der erste Drucker heißt nur `machine.printer`). Ändere den Wert von `epson\:raw,kassa` auf `file\:raw,kassa`. Die Einstellung `file` erlaubt in Chromis POS keine weiteren Einstellungen, die Einstellungen aus der Konfigurationsdatei werden aber übernommen. Achtung bei der Änderung weiterer Einstellungen, ggf. muss dieser Wert neu angepasst werden (Bug/Featre?).
 - Template Printer.Ticket mit (Printer.Ticket.chromis) ersetzen und für den richtigen Drucker bearbeiten z.B. `<ticket printer="2">`. Altes Template ggf. sichern.
-- Das öffnen der Kassenlade kann über den Druckertreiber des Bondruckers oder über ein zusätzliches Template für den alten Anschluss des Bondruckers (siehe Template (Printer.Ticket.posper-kitchen), dort werden zwei Druckaufträge für zwei unterschiedliche Drucker erstellt, der Befehl für das Öffnen der Kassenlade lautet `<opendrawer/>`)
+- Das öffnen der Kassenlade kann über den Druckertreiber des Bondruckers oder über ein zusätzliches Template für den alten Anschluss des Bondruckers erfolgen (siehe Template (Printer.Ticket.posper-kitchen), dort werden zwei Druckaufträge für zwei unterschiedliche Drucker erstellt, der Befehl für das Öffnen der Kassenlade lautet `<opendrawer/>`)
 - QRK konfigurieren
 - QRK im Server-Modus starten mit `qrk --servermode`
