@@ -1,6 +1,6 @@
 # QRK Registrierkasse als Serverdienst für alte Kassenlösungen
 Die Software *[QRK Registrierkasse](http://www.ckvsoft.at/)* ist eine einfache Kasse, die nach Angaben der Projekthomepage der österreichischen Registrierkassensicherheitsverordnung (RKSV) entspricht.
-Neben der typischen Kassenfunktion nimmt die Kasse im Server-Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden. Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
+Neben der typischen Kassenfunktion nimmt die Kasse im Server-Modus Rechnungsdaten per JSON-Datei entgegen. Mit dieser Funktion können Rechnungen aus anderen Programmen heraus erstellt werden. Hier wird beschrieben, wie Bons aus POS-Software der Codebasis POSper, Chromis POS, gplPOS, uniCenta POS,... mit Hilfe von QRK erstellt und signiert werden können.
 Das Format der JSON-Datei wurde im [Forum](http://www.ckvsoft.at/forum/qrk-fragen-und-antworten/anbindung-an-boniersystem/#post-648) veröffentlicht. Die Anpassung der Bons der genannten Kassensysteme erfolgt über die Template-Engine *Apache Velocity*. Die Vorlage `Printer.Ticket[.pos-software]` erstellt ein JSON-Objekt für QRK.
 
 Die Beschreibung wurde unter Windows XP, 7 und 10 mit der POS-Software Chromis POS und POSper getestet. Für Linux gibt es einen Lösungsansatz für Chromis POS und POSper. Rückmeldung zu anderen Kassenlösungen arbeite ich gerne ein!
