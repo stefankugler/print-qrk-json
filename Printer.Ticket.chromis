@@ -7,7 +7,9 @@
 			#set( $anzahl = $ticket.getLines().size() )</text>
 			#foreach ($ticketline in $ticket.getLines())
             <text>{ "count": "</text>
-            <text>${ticketline.printMultiply()}</text>
+            #set ($mengeKomma = ${ticketline.printMultiply()})
+            #set ($mengePunkt = $mengeKomma.replace(",", "."))
+            <text>${mengePunkt}</text>
             <text>",</text>
             <text>"name": "</text>
             <!-- <text>${velocityCount}  von  ${anzahl}</text> -->
